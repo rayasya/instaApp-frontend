@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import "remixicon/fonts/remixicon.css";
+import BottomBarNav from "@/components/bottom_bar_nav";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -22,7 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
-        <main>{children}</main>
+        <main>
+          {children}
+          <BottomBarNav />
+        </main>
       </body>
     </html>
   );
