@@ -140,11 +140,11 @@ export default function Home() {
         />
         <i
           className={`${
-            active === "/search"
+            active === "/explore"
               ? "ri-search-fill text-white"
               : "ri-search-line text-gray-500"
           } text-2xl`}
-          onClick={() => handleNavigate("/search")}
+          onClick={() => handleNavigate("/explore")}
         />
         <i
           className={`${
