@@ -3,6 +3,7 @@
 @theme {
   --color-primary: var(--background);
   --color-text: #ffffff;
+  --color-foreground: var(--foreground);
 }
 
 :root {
