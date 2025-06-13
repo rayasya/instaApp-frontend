@@ -39,11 +39,11 @@ export default function BottomBarNav() {
       />
       <i
         className={`${
-          active === "/liked"
+          active === "/notification"
             ? "ri-heart-fill text-white"
             : "ri-heart-line text-gray-500"
         } text-2xl`}
-        onClick={() => handleNavigate("/liked")}
+        onClick={() => handleNavigate("/notification")}
       />
       <i
         className={`${
