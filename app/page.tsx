@@ -30,21 +30,49 @@ export default function Home() {
       </nav>
 
       {/* Story Section */}
-      <section className="flex items-center">
-        {[...Array(3)].map((_, i) => (
-          <div
-            key={i}
-            className="rounded-full size-20 bg-white shadow-lg m-2"
-          ></div>
-        ))}
+      <section className="flex items-center overflow-x-auto">
+        <div className="flex space-x-2 mb-3">
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={i}
+              className={`rounded-full size-20 ${
+                i === 0 ? "bg-blue-500" : "bg-white"
+              } shadow-lg m-2 ${
+                i === 0 ? "flex items-center justify-center" : ""
+              }`}
+            >
+              <div
+                className={
+                  i === 0
+                    ? "flex flex-col items-center justify-center"
+                    : "h-full w-full"
+                }
+              >
+                {i === 0 && <i className="ri-add-line text-white text-2xl"></i>}
+                {i !== 0 && (
+                  <Image
+                    src={`https://picsum.photos/seed/${i}/200/200`}
+                    alt={`Story ${i}`}
+                    className="rounded-full mb-2"
+                    width={200}
+                    height={200}
+                  />
+                )}
+                <p className="text-center text-xs">
+                  {i === 0 ? "Tambah Story" : `User ${i}`}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Home Feed Section */}
-      <section className=" p-2">
+      <section className="p-2 mb-10">
         {/* Post */}
         {[...Array(5)].map((_, index) => (
           <div
-            key={index}
+            key={index + 1}
             className="w-full text-white border border-white/20 rounded-xl mt-4 mb-8"
           >
             <div className="p-4">
@@ -60,7 +88,7 @@ export default function Home() {
               {/* Post Image */}
               <div className="mt-4">
                 <Image
-                  src={`https://picsum.photos/seed/${index}/800/600`}
+                  src={`https://picsum.photos/seed/${index + 1}/800/600`}
                   alt="Post"
                   className="w-full rounded-lg"
                   width={800}
