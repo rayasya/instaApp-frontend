@@ -1,103 +1,176 @@
+"use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const router = useRouter();
+  const [active, setActive] = useState("/");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleNavigate = (path: string) => {
+    setActive(path);
+    router.push(path);
+  };
+  return (
+    <>
+      <nav className="flex items-center justify-between p-4">
+        <a href="" className="text-2xl font-bold">
+          InstaApp
+        </a>
+        <div className="flex items-center space-x-4">
+          <div className="relative">
+            <i className="ri-notification-line text-2xl"></i>
+            <div className="absolute top-0 right-0 bg-red-500 size-3 rounded-full"></div>
+          </div>
+          <div className="relative">
+            <i className="ri-chat-3-line text-2xl"></i>
+            <div className="absolute top-0 right-0 bg-red-500 size-3 rounded-full"></div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </nav>
+
+      {/* Story Section */}
+      <section className="flex items-center overflow-x-auto">
+        <div className="flex space-x-2 mb-3">
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={i}
+              className={`rounded-full size-20 ${
+                i === 0 ? "bg-blue-500" : "bg-white"
+              } shadow-lg m-2 ${
+                i === 0 ? "flex items-center justify-center" : ""
+              }`}
+            >
+              <div
+                className={
+                  i === 0
+                    ? "flex flex-col items-center justify-center"
+                    : "h-full w-full"
+                }
+              >
+                {i === 0 && <i className="ri-add-line text-white text-2xl"></i>}
+                {i !== 0 && (
+                  <Image
+                    src={`https://picsum.photos/seed/${i}/200/200`}
+                    alt={`Story ${i}`}
+                    className="rounded-full mb-2"
+                    width={200}
+                    height={200}
+                  />
+                )}
+                <p className="text-center text-xs">
+                  {i === 0 ? "Tambah Story" : `User ${i}`}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Home Feed Section */}
+      <section className="p-2 mb-10">
+        {/* Post */}
+        {[...Array(5)].map((_, index) => (
+          <div
+            key={index + 1}
+            className="w-full text-white border border-white/20 rounded-xl mt-4 mb-8"
+          >
+            <div className="p-4">
+              {/* Post Header */}
+              <div className="flex items-center justify-between">
+                <div className="flex gap-4 items-center">
+                  <div className="rounded-full size-10 bg-blue-300 shadow-lg"></div>
+                  <h1 className="text-sm">Username Akun</h1>
+                </div>
+                <i className="ri-more-2-fill text-xl"></i>
+              </div>
+
+              {/* Post Image */}
+              <div className="mt-4">
+                <Image
+                  src={`https://picsum.photos/seed/${index + 1}/800/600`}
+                  alt="Post"
+                  className="w-full rounded-lg"
+                  width={800}
+                  height={600}
+                />
+              </div>
+
+              {/* Post Actions */}
+              <div className="flex items-center justify-between mt-4">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <i className="ri-heart-line text-2xl"></i>
+                    <p>100</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <i className="ri-chat-3-line text-2xl"></i>
+                    <p>50</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <i className="ri-send-plane-line text-2xl"></i>
+                    <p>20</p>
+                  </div>
+                </div>
+                <i className="ri-bookmark-line text-2xl"></i>
+              </div>
+
+              {/* Post Description */}
+              <div className="mt-2">
+                <p className="text-sm">
+                  <span className="font-bold">Username Akun</span> Lorem ipsum
+                  dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* Bottom Bar Navigation Section */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-primary border-t border-gray-200/50 p-4 flex justify-around">
+        <i
+          className={`${
+            active === "/"
+              ? "ri-home-fill text-white"
+              : "ri-home-line text-gray-500"
+          } text-2xl`}
+          onClick={() => handleNavigate("/")}
+        />
+        <i
+          className={`${
+            active === "/search"
+              ? "ri-search-fill text-white"
+              : "ri-search-line text-gray-500"
+          } text-2xl`}
+          onClick={() => handleNavigate("/search")}
+        />
+        <i
+          className={`${
+            active === "/add"
+              ? "ri-add-circle-fill text-white"
+              : "ri-add-circle-line text-gray-500"
+          } text-2xl`}
+          onClick={() => handleNavigate("/add")}
+        />
+        <i
+          className={`${
+            active === "/liked"
+              ? "ri-heart-fill text-white"
+              : "ri-heart-line text-gray-500"
+          } text-2xl`}
+          onClick={() => handleNavigate("/liked")}
+        />
+        <i
+          className={`${
+            active === "/profile"
+              ? "ri-user-fill text-white"
+              : "ri-user-line text-gray-500"
+          } text-2xl`}
+          onClick={() => handleNavigate("/profile")}
+        />
+      </nav>
+    </>
   );
 }
