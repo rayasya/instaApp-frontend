@@ -20,38 +20,32 @@ export default function Home() {
       </nav>
 
       {/* Story Section */}
-      <section className="flex items-center overflow-x-auto">
-        <div className="flex space-x-2 mb-3">
+      <section className="overflow-x-auto py-4">
+        <div className="flex space-x-4 px-4 min-w-max">
           {[...Array(10)].map((_, i) => (
-            <div
-              key={i}
-              className={`rounded-full size-20 ${
-                i === 0 ? "bg-blue-500" : "bg-white"
-              } shadow-lg m-2 ${
-                i === 0 ? "flex items-center justify-center" : ""
-              }`}
-            >
+            <div key={i} className="flex flex-col items-center flex-shrink-0">
               <div
-                className={
-                  i === 0
-                    ? "flex flex-col items-center justify-center"
-                    : "h-full w-full"
-                }
+                className={`rounded-full size-16 ${
+                  i === 0 ? "bg-blue-500" : "bg-white"
+                } shadow-lg ${
+                  i === 0 ? "flex items-center justify-center" : ""
+                }`}
               >
-                {i === 0 && <i className="ri-add-line text-white text-2xl"></i>}
-                {i !== 0 && (
+                {i === 0 ? (
+                  <i className="ri-add-line text-white text-2xl"></i>
+                ) : (
                   <Image
                     src={`https://picsum.photos/seed/${i}/200/200`}
                     alt={`Story ${i}`}
-                    className="rounded-full mb-2"
-                    width={200}
-                    height={200}
+                    className="rounded-full"
+                    width={64}
+                    height={64}
                   />
                 )}
-                <p className="text-center text-xs">
-                  {i === 0 ? "Tambah Story" : `User ${i}`}
-                </p>
               </div>
+              <p className="text-center text-xs mt-2 w-16">
+                {i === 0 ? "Tambah Story" : `User ${i}`}
+              </p>
             </div>
           ))}
         </div>
