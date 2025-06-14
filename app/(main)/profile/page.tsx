@@ -9,7 +9,7 @@ export default function ExploreSection() {
   return (
     <>
       {/* Header Section */}
-      <section className="p-4">
+      <section className="p-4 flex flex-col mx-auto max-w-3xl">
         <h1 className="text-2xl font-bold">Username</h1>
         <div className="flex items-center justify-around mt-5">
           <Image
@@ -39,7 +39,7 @@ export default function ExploreSection() {
         </div>
       </section>
 
-      <section className="gap-10 p-4">
+      <section className="gap-10 p-4 ">
         {/* Tab Navigation */}
         <nav className="flex items-center justify-evenly gap-10">
           <button
@@ -61,7 +61,7 @@ export default function ExploreSection() {
         </nav>
 
         {/* Tab Content */}
-        <div className="grid grid-cols-3 gap-2 p-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-4 p-2 sm:p-4">
           {activeTab === "posts" &&
             [...Array(20)].map((_, i) => (
               <div key={i} className="relative rounded-md overflow-hidden">
